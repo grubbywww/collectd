@@ -1,0 +1,8 @@
+---
+#COLLECTD PACKAGE INSTALL AND TEMPLAGE COPY
+- name: Install Collectd Package
+  yum: name=collectd state=installed
+- name: Configure Collectd
+  template: src=collectd.conf.j2 dest=/opt/collectd/etc/collectd.conf owner=root group=root mode=0755
+  notify:
+  - start collectd
