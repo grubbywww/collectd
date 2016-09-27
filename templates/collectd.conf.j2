@@ -163,7 +163,7 @@ LoadPlugin network
 #LoadPlugin powerdns
 LoadPlugin processes
 LoadPlugin protocols
-#LoadPlugin python
+LoadPlugin python
 ##LoadPlugin redis
 ##LoadPlugin routeros
 #LoadPlugin rrdcached
@@ -986,6 +986,14 @@ LoadPlugin tcpconns
 #		spam "wonderful" "lovely"
 #	</Module>
 #</Plugin>
+
+<Plugin python>
+      ModulePath "/opt/collectd/lib/collectd/plugins/python"
+      LogTraces true
+      Import "load_per_cpu"
+</Plugin>
+
+
 
 #<Plugin redis>
 #   <Node example>

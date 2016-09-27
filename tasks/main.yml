@@ -2,6 +2,15 @@
 #COLLECTD PACKAGE INSTALL AND TEMPLAGE COPY
 - name: Install Collectd Package
   yum: name=collectd state=installed
+
+- name: make sure path /opt/collectd/lib/collectd/plugins/python exist
+  sudo: yes
+  file: path=/opt/collectd/lib/collectd/plugins/python state=directory
+
+- name: copy load_per_cpu.py plugin
+  sudo: yes
+  copy: dest=/opt/collectd/lib/collectd/plugins/python/load_per_cpu.py  src=load_per_cpu.py owner=root group=root mode=0755
+
 - name: Configure Collectd
   template: src=collectd.conf.j2 dest=/opt/collectd/etc/collectd.conf owner=root group=root mode=0755
   notify:
